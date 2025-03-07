@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'poppins';
+    margin: 0px;
+    padding: 0px;
+    background-color: #ECF3F9;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 72px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .main-left {
+    margin-left: 50px;
+    background-color: blue;
+    font-size: larger;
+    background-color: transparent;
+}
+
+h2 {
+    background-color: transparent;
+}
+
+.header {
+    color: #41ab5d;
+    background-color: #fff;
+}
+
+.main-right a {
+    padding-left: 40px;
+    background-color: #fff;
+}
+
+.main-right {
+    margin-right: 50px;
+    background-color: #fff;
+}
+
+a {
+    font-size: 18px;
+    color: #302C51;
+    opacity: 100%;
+}
+
+a:hover {
+    color: black;
+}
+
+.about-main {
+    /* display: flex; */
+    /* align-items: center; */
+    height: 400px;
+
+}
+
+.about-img img {
+    height: 600px;
+    width: 100%;
+}
+
+.donate {
+    width: 120px;
+    height: 35px;
+    font-size: 17px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #41ab5d;
+    border-radius: 10px;
+}
+
+.donate:hover {
+    box-shadow: 5px 5px 10px #00441b84;
+    transform: translateY(-2px);
+}
+
+.what-we-do {
+    background-color: #fff;
+    color: #238b45;
+}
+
+.donate-img {
+    height: 20px;
+    width: 20px;
+    background-color: #41ab5d;
+}
+
+span {
+    margin-left: 14px;
+    background-color: #41ab5d;
+    color: #fff;
+}
+
+.we-do-header {
+    text-align: center;
+    margin-top: 200px;
+    font-size: 52px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 0.2em;
+    /* Add padding to make room for the underline */
+    z-index: 0;
+    color: #302C51;
+}
+
+
+.we-do-header::before {
+    content: "";
+    position: absolute;
+    left: 650px;
+    bottom: 20px;
+    width: 20%;
+    height: 0.2em;
+    /* Adjust thickness as needed */
+    background-color: #FFD500;
+    /* Your highlight color */
+    z-index: -1;
+    /* Place it behind the text */
+}
+.about::before {
+    width: 10%;
+    left: 710px;
+    margin-top: -10px;
+}
+
+/* CSS */
+/* CSS */
+.simple-footer {
+    /* A subtle gradient from light gray to a soft complementary pink */
+    background: linear-gradient(45deg, #d9d9d9, #f0e3e8);
+    text-align: center;
+    padding: 2rem 0;
+    font-family: Arial, sans-serif;
+    min-height: 100px;
+    /* Ensures enough vertical space */
+}
+
+.simple-footer p {
+    margin: 0;
+    /* Remove default paragraph margins */
+    color: #333;
+    /* Dark text for contrast */
+    font-size: 1.2rem;
+    /* Slightly larger text size */
+    background-color: transparent;
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+.about-img {
+    position: relative;
+    /* Container for positioning overlay text */
+    width: 100%;
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.overlay-main-text {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    background: transparent;
+    /* Semi-transparent background for readability */
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.main-green {
+    background-color: transparent;
+    color: #41ab5d;
+}
+
+/* Add these CSS changes */
+.we-do {
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    opacity: 0;
+    /* Start invisible */
+    transform: translateY(30px);
+    /* Start slightly lower */
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.we-do.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section styling */
+#our-services {
+    padding: 40px;
+    background-color: transparent;
+    text-align: center;
+}
+
+#our-services h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+}
+
+/* Container for service cards */
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Individual service card styling */
+.service-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    padding: 20px;
+    text-align: center;
+}
+
+.service-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    background: transparent;
+}
+
+.service-card p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 15px;
+    background: transparent;
+}
+
+/* Link styling */
+.service-card a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: bold;
+    background: transparent;
+}
+
+.service-card a:hover {
+    text-decoration: underline;
+}
+
+
+#our-services h2 {
+    font-size: 40px;
+    color: #302C51;
+}
+
+.footer-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Social Section
+.social-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #6351ce;
+    color: white;
+} */
+
+
+
+/* Main Footer Content */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    background-color: #1c2331;
+    color: white;
+}
+
+.footer-column {
+    padding: 0 1rem;
+    background-color: transparent;
+}
+
+.footer-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.footer-divider {
+    width: 60px;
+    height: 2px;
+    background-color: #7c4dff;
+    margin: 0 0 1rem 0;
+    border: none;
+}
+
+.footer-links p {
+    margin: 0.5rem 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Info */
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+}
+
+/* Copyright */
+.copyright {
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.social-headers {
+    background-color: transparent;
+}
+.social-text {
+    background-color: transparent;
+}
+.footer-text {
+    background-color: transparent;
+}
+.footer-links {
+    background-color: transparent;
+}
+.contact-info {
+    background-color: transparent;
+}
+p,a {
+    background: transparent;
+}
+
+hr {
+    margin-top: 30px;
+}
+.about-bottom {
+    margin-top: 40px;
+}

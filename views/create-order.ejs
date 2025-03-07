@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razorpay Payment</title>
+  <link rel="stylesheet" href="/css/create-order.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="donation-container">
+        <h1>Support Our Cause</h1>
+        <hr>
+        <form class="donation-form" id="donationForm">
+          <!-- Full Name -->
+          <div class="form-row">
+            <label for="firstName">Full Name</label>
+            <div class="form-split">
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="First Name"
+                required
+              >
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name"
+                required
+              >
+            </div>
+          </div>
+    
+          <!-- Email -->
+          <div class="form-row">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ex: myname@example.com"
+              required
+            >
+          </div>
+    
+          <!-- Phone Number -->
+          <div class="form-row">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="(000) 000-0000"
+              required
+            >
+          </div>
+    
+          <!-- Comments -->
+          <div class="form-row">
+            <label for="comments">Comments</label>
+            <textarea
+              id="comments"
+              name="comments"
+              rows="4"
+              placeholder="Any additional comments..."
+            ></textarea>
+          </div>
+    
+          <!-- Donation Amount -->
+          <div class="form-row">
+            <label for="donationAmount">Donation Amount (INR)</label>
+            <div class="currency-input">
+              <span class="currency-symbol">₹</span>
+              <input
+                type="number"
+                id="donationAmount"
+                name="donationAmount"
+                placeholder="Enter amount in rupees"
+                min="1"
+                required
+              >
+            </div>
+          </div>
+    
+          <!-- Button Group -->
+          <div class="button-group">
+            <button type="button" class="btn secondary-btn" onclick="window.history.back()">
+              ← Back
+            </button>
+            <button type="submit" class="btn primary-btn">
+              Donate Now
+            </button>
+          </div>
+        </form>
+      </div>
+    
+      <script>
+        document.getElementById('donationForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const amountInput = document.getElementById('donationAmount');
+          const firstName = document.getElementById('firstName').value.trim();
+          const lastName = document.getElementById('lastName').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const amount = parseFloat(amountInput.value);
+    
+          // Validation
+          if (!firstName || !lastName || !email || !phone || isNaN(amount)) {
+            alert('Please fill all required fields correctly');
+            return;
+          }
+    
+          if (amount < 1) {
+            alert('Minimum donation amount is ₹1');
+            return;
+          }
+    
+          try {
+            // Create Razorpay order
+            const response = await fetch('/create-order', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                amount: Math.round(amount * 100), 
+                currency: 'INR'
+              })
+            });
+    
+            if (!response.ok) throw new Error('Failed to create payment order');
+    
+            const orderData = await response.json();
+    
+            // Razorpay configuration
+            const options = {
+              key: '<%= razorpayKey %>', 
+              amount: orderData.amount,
+              currency: orderData.currency,
+              name: 'Charity Donation',
+              description: `Donation of ₹${amount}`,
+              order_id: orderData.id,
+              handler: function(response) {
+                alert(`Payment Successful!\nTransaction ID: ${response.razorpay_payment_id}`);
+                document.getElementById('donationForm').reset();
+              },
+              theme: {
+                color: '#3498db'
+              },
+              prefill: {
+                name: `${firstName} ${lastName}`,
+                email: email,
+                contact: phone
+              },
+              notes: {
+                comment: document.getElementById('comments').value.trim()
+              }
+            };
+    
+            const rzp = new Razorpay(options);
+            rzp.open();
+    
+            // Handle payment errors
+            rzp.on('payment.failed', (response) => {
+              alert(`Payment Failed: ${response.error.description}`);
+            });
+    
+          } catch (error) {
+            console.error('Payment Error:', error);
+            alert('Payment processing failed. Please try again.');
+          }
+        });
+      </script>
+</body>
+</html>
