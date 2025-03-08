@@ -4,7 +4,10 @@ const http = require("http");
 const path = require("path");
 const cors = require("cors");
 const Razorpay = require("razorpay");
+const { PortingPortabilityListInstance } = require("twilio/lib/rest/numbers/v1/portingPortability");
 app.use(express.urlencoded({ extended: true })); 
+
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -73,6 +76,6 @@ app.get("/approved",(req,res) => {
   res.render("approved")
 })
 
- app.listen(8080 , () => {
+ app.listen(port, () => {
     console.log("server listening on 8080")
  });
