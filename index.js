@@ -4,10 +4,17 @@ const http = require("http");
 const path = require("path");
 const cors = require("cors");
 const Razorpay = require("razorpay");
-const { PortingPortabilityListInstance } = require("twilio/lib/rest/numbers/v1/portingPortability");
 app.use(express.urlencoded({ extended: true })); 
 
 const port = process.env.PORT || 8080;
+const host = process.env.HOST || '0.0.0.0';
+const url = `http://${host}:${port}`; 
+
+
+app.listen(port, host, () => {
+    console.log(`Server running at ${url}`);
+});
+
 
 app.use(cors());
 app.use(express.json());
