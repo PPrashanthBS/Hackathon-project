@@ -1,0 +1,342 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #f39c12;
+    --text-color: #333;
+    --light-bg: #f9f9f9;
+    --border-color: #ddd;
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-description {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.progress-container {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    display: flex;
+    counter-reset: step;
+    margin-bottom: 15px;
+}
+
+.progress-step {
+    width: 14.28%;
+    text-align: center;
+    position: relative;
+}
+
+.progress-step:before {
+    counter-increment: step;
+    content: counter(step);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid var(--border-color);
+    display: block;
+    margin: 0 auto 5px auto;
+    border-radius: 50%;
+    background-color: white;
+    color: #666;
+    font-weight: bold;
+}
+
+.progress-step:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--border-color);
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+
+.progress-step:first-child:after {
+    content: none;
+}
+
+.progress-step.active:before {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.progress-step.completed:before {
+    border-color: var(--success-color);
+    background-color: var(--success-color);
+    color: white;
+    content: '✓';
+}
+
+.form-section {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.form-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    margin-right: 10px;
+    width: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.required-label:after {
+    content: ' *';
+    color: var(--error-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-bg);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    background-color: var(--light-bg);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.file-upload:hover {
+    border-color: var(--primary-color);
+}
+
+.file-upload i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.file-upload p {
+    text-align: center;
+    color: #666;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-prev {
+    background-color: var(--light-bg);
+    color: #666;
+}
+
+.btn-prev:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-next {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-next:hover {
+    background-color: #2980b9;
+}
+
+.btn-submit {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #219653;
+}
+
+.captcha-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--light-bg);
+    border-radius: 4px;
+}
+
+.captcha-image {
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    letter-spacing: 5px;
+    text-decoration: line-through;
+    border: 1px solid #ccc;
+}
+
+.captcha-input {
+    flex: 1;
+}
+
+.helper-text {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 15px;
+        width: auto;
+    }
+    
+    .progress-step {
+        font-size: 12px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .checkbox-group {
+        flex-direction: column;
+    }
+}

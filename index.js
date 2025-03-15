@@ -81,6 +81,10 @@ app.get("/requests", (req,res) => {
 
 app.get("/approved",(req,res) => {
   res.render("approved")
+});
+
+app.get("/partner",(req,res) => {
+  res.render("partner")
 })
 
  app.listen(port, () => {
